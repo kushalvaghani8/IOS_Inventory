@@ -7,16 +7,16 @@
 
 import Foundation
 
-class Item{
+class Item: NSObject, Codable {
     var name: String
     var SKU: String
-    var description: String
+    var Description: String
     var dateAdded: Date
     
-    init(name: String, SKU: String, description: String, dateAdded: Date){
+    init(name: String, SKU: String, Description: String, dateAdded: Date){
         self.name = name
         self.SKU = SKU
-        self.description = description
+        self.Description = Description
         self.dateAdded = dateAdded
     }
 }

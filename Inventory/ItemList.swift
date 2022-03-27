@@ -11,7 +11,20 @@ class ItemList{
     var items = [Item]()
     
     func addItem(item: Item){
-        // complete code
+        
+        items.append(item)
+        
+        let jsonEncoder = JSONEncoder()
+        if let savedData = try? jsonEncoder.encode(items) {
+            let defaults = UserDefaults.standard
+            defaults.set(savedData, forKey: "Items")
+            
+            print("its in item list \(items)")
+        }
+        else {
+        print( "Failed to save word data")
+        }
+
     }
     
     func deleteItem(row: Int){
