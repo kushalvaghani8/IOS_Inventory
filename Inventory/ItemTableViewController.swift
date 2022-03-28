@@ -35,7 +35,7 @@ class ItemTableViewController: UITableViewController {
         if let savedwords = defaults.object(forKey: "Items") as? Data {
             let jsonDecoder = JSONDecoder()
             do {
-                item = try jsonDecoder.decode ([Item].self, from: savedwords)
+                item = try jsonDecoder.decode([Item].self, from: savedwords)
             }
             catch {
                 print("")
@@ -73,19 +73,20 @@ class ItemTableViewController: UITableViewController {
      // Return false if you do not want the specified item to be editable.
      return true
      }
-     */
+     
+*/
     
-    /*
      // Override to support editing the table view.
      override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
      if editingStyle == .delete {
+         itemList.deleteItem(row: indexPath.row)
      // Delete the row from the data source
      tableView.deleteRows(at: [indexPath], with: .fade)
      } else if editingStyle == .insert {
      // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
      }
      }
-     */
+     
     
     /*
      // Override to support rearranging the table view.

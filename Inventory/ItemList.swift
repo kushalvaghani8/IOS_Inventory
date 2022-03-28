@@ -18,17 +18,15 @@ class ItemList{
         if let savedData = try? jsonEncoder.encode(items) {
             let defaults = UserDefaults.standard
             defaults.set(savedData, forKey: "Items")
-            
-            print("its in item list \(items)")
         }
         else {
-        print( "Failed to save word data")
+        print( "Failed to save data")
         }
 
     }
     
     func deleteItem(row: Int){
-        // complete code
+        items.remove(at: row)
     }
     
     func moveItem(from: Int, to: Int){
