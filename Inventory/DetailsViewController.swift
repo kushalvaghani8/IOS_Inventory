@@ -7,10 +7,15 @@
 
 import UIKit
 
+//protocol detailViewDelegate{
+//    func saveItemList(items:Item)
+//}
+
 class DetailsViewController: UIViewController {
     
     var itemList:ItemList!
     var items = [Item]()
+    
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var SKUField: UITextField!
     @IBOutlet weak var descField: UITextField!
@@ -29,8 +34,10 @@ class DetailsViewController: UIViewController {
         if !nameField.text!.isEmpty && !SKUField.text!.isEmpty && !descField.text!.isEmpty{
             //getting text from text field
             let items = Item(name: nameField.text!, SKU: SKUField.text!, Description: descField.text!, dateAdded: dateField.date)
-            itemList.addItem(item: items)
             
+        
+            itemList.addItem(item: items)
+            print("item saved\(items.name)")
         }
     }
     

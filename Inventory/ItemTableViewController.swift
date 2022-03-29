@@ -16,10 +16,6 @@ class ItemTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -30,7 +26,7 @@ class ItemTableViewController: UITableViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-      
+        
         let defaults = UserDefaults.standard
         if let savedwords = defaults.object(forKey: "Items") as? Data {
             let jsonDecoder = JSONDecoder()
@@ -42,6 +38,7 @@ class ItemTableViewController: UITableViewController {
             }
         }
         tableView.reloadData()
+        print(item.count)
     }
     
     
@@ -62,46 +59,57 @@ class ItemTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "item", for: indexPath)
         
         let items = item[indexPath.row]
-        
         cell.textLabel?.text = items.name
+     //  print(cell)
         return cell
+        
+       
     }
     
-    /*
+
+    
+    
      // Override to support conditional editing of the table view.
      override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
      // Return false if you do not want the specified item to be editable.
      return true
      }
      
-*/
-    
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-         itemList.deleteItem(row: indexPath.row)
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
      
     
-    /*
+    // Override to support editing the table view.
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            itemList.deleteItem(row: indexPath.row)
+            item.remove(at: indexPath.row)
+            // Delete the row from the data source
+            //tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.reloadData()
+            
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }
+    }
+    
+    
+    
      // Override to support rearranging the table view.
      override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+         
+         itemList.moveItem(from: fromIndexPath.row, to: to.row)
+//         var mbanana = to.row
+//         print(mbanana)
      
      }
-     */
+     
     
-    /*
+    
      // Override to support conditional rearranging of the table view.
      override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
      // Return false if you do not want the item to be re-orderable.
      return true
      }
-     */
+     
     
     // MARK: - Navigation
     
