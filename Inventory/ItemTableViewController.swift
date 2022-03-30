@@ -34,7 +34,7 @@ class ItemTableViewController: UITableViewController {
                 item = try jsonDecoder.decode([Item].self, from: savedwords)
             }
             catch {
-                print("")
+                print("Failed to decode data")
             }
         }
         tableView.reloadData()

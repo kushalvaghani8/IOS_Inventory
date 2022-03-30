@@ -34,10 +34,7 @@ class DetailsViewController: UIViewController {
         if !nameField.text!.isEmpty && !SKUField.text!.isEmpty && !descField.text!.isEmpty{
             //getting text from text field
             let items = Item(name: nameField.text!, SKU: SKUField.text!, Description: descField.text!, dateAdded: dateField.date)
-            
-        
             itemList.addItem(item: items)
-            print("item saved\(items.name)")
         }
     }
     
