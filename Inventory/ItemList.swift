@@ -31,10 +31,9 @@ class ItemList{
     func moveItem(from: Int, to: Int){
         
     decodeData()
-        //        let mNewItem = items[from]
+    let mNewItem = items[from]
         items.remove(at: from)
-        items.insert(items[from], at: to)
-        
+        items.insert(mNewItem, at: to)
     encodeData()
         
         // complete code
