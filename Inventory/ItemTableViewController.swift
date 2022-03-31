@@ -12,6 +12,7 @@ class ItemTableViewController: UITableViewController {
     let itemList = ItemList()
     var item = [Item]()
     
+    let detailView = DetailsViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +39,7 @@ class ItemTableViewController: UITableViewController {
             }
         }
         tableView.reloadData()
-        print(item.count)
+        //print(item.count)
     }
     
     
@@ -62,9 +63,9 @@ class ItemTableViewController: UITableViewController {
         cell.textLabel?.text = items.name
      //  print(cell)
         return cell
-        
        
     }
+
     
 
     
@@ -117,6 +118,7 @@ class ItemTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let dst = segue.destination as! DetailsViewController
         dst.itemList = itemList
+        dst.index = tableView.indexPathForSelectedRow?.row
         
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.

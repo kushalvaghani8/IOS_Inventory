@@ -17,8 +17,6 @@ class ItemList{
     decodeData()
         items.append(item)
     encodeData()
-        
-        
     }
     
     func deleteItem(row: Int){
@@ -34,10 +32,16 @@ class ItemList{
     let mNewItem = items[from]
         items.remove(at: from)
         items.insert(mNewItem, at: to)
-    encodeData()
-        
-        // complete code
+  
+        encodeData()
     }
+    
+//    func editItem(row: Int, item: Item){
+//        decodeData()
+//        let mEditItem = items[row]
+//        items.insert(mEditItem, at: row)
+//    }
+ 
     
     
     func decodeData(){
