@@ -35,11 +35,11 @@ class DetailsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         if index != nil {
-            itemList.decodeData()
-            nameField.text =  itemList.items[index].name
-            SKUField.text = itemList.items[index].SKU
-            descField.text = itemList.items[index].Description
-            dateField.date = itemList.items[index].dateAdded
+            itemList.decodeData() //decoding the data
+            nameField.text =  itemList.items[index].name //displaying the name from the users' selected row
+            SKUField.text = itemList.items[index].SKU//displaying the sku from the users' selected row
+            descField.text = itemList.items[index].Description//displaying the description from the users' selected row
+            dateField.date = itemList.items[index].dateAdded //displaying the date from the users' selected row
         }
     }
     
@@ -50,7 +50,7 @@ class DetailsViewController: UIViewController {
 //    }
 
     
-    @IBAction func save(_ sender: Any) {
+    @IBAction func save(_ sender: Any) { //saving the data
         
         
         if !nameField.text!.isEmpty && !SKUField.text!.isEmpty && !descField.text!.isEmpty{

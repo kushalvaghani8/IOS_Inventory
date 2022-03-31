@@ -14,26 +14,26 @@ class ItemList{
     
     func addItem(item: Item){
         
-    decodeData()
-        items.append(item)
-    encodeData()
+    decodeData() //decoding the data
+        items.append(item) //adding it to the items'
+    encodeData() //encoding it back again
     }
     
     func deleteItem(row: Int){
-      decodeData()
-        items.remove(at: row)
-     encodeData()
+      decodeData() //decoding the data
+        items.remove(at: row) //removing it from the data
+        encodeData() //saving it back (encoding the data)
         }
     
     
-    func moveItem(from: Int, to: Int){
+    func moveItem(from: Int, to: Int){ //moving the data with from and two row passed (old to new)
         
-    decodeData()
+    decodeData() //decoding the data
     let mNewItem = items[from]
-        items.remove(at: from)
-        items.insert(mNewItem, at: to)
+        items.remove(at: from) //removing the row from and
+        items.insert(mNewItem, at: to) //adding it - to field
   
-        encodeData()
+        encodeData() //encoding it back after the move
     }
     
 //    func editItem(row: Int, item: Item){
@@ -44,7 +44,7 @@ class ItemList{
  
     
     
-    func decodeData(){
+    func decodeData(){ //function to decode the data
         let defaults = UserDefaults.standard
         if let savedwords = defaults.object(forKey: "Items") as? Data {
             let jsonDecoder = JSONDecoder()
@@ -57,7 +57,7 @@ class ItemList{
         }
     }
     
-    func encodeData(){
+    func encodeData(){ // function for encoding the data
         let jsonEncoder = JSONEncoder()
         if let savedData = try? jsonEncoder.encode(items) {
             // let defaults = UserDefaults.standard

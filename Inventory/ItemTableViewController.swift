@@ -28,7 +28,7 @@ class ItemTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        let defaults = UserDefaults.standard
+        let defaults = UserDefaults.standard //decoding the data to display in table view
         if let savedwords = defaults.object(forKey: "Items") as? Data {
             let jsonDecoder = JSONDecoder()
             do {
@@ -53,14 +53,14 @@ class ItemTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        return item.count
+        return item.count //getting items count for number of rows
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "item", for: indexPath)
         
-        let items = item[indexPath.row]
-        cell.textLabel?.text = items.name
+        let items = item[indexPath.row] //saving each item at index path
+        cell.textLabel?.text = items.name //displaying items at indexpath
      //  print(cell)
         return cell
        
@@ -81,7 +81,7 @@ class ItemTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            itemList.deleteItem(row: indexPath.row)
+            itemList.deleteItem(row: indexPath.row) //passing the data to delete the row
             item.remove(at: indexPath.row)
             // Delete the row from the data source
             //tableView.deleteRows(at: [indexPath], with: .fade)
@@ -118,7 +118,7 @@ class ItemTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let dst = segue.destination as! DetailsViewController
         dst.itemList = itemList
-        dst.index = tableView.indexPathForSelectedRow?.row
+        dst.index = tableView.indexPathForSelectedRow?.row //passing the index to fill in the fields in detail view
         
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
