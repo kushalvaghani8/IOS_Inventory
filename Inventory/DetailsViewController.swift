@@ -28,14 +28,14 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        
         // Do any additional setup after loading the view.
         
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         if index != nil {
-            itemList.decodeData() //decoding the data
+            //  itemList.decodeData() //decoding the data
             nameField.text =  itemList.items[index].name //displaying the name from the users' selected row
             SKUField.text = itemList.items[index].SKU//displaying the sku from the users' selected row
             descField.text = itemList.items[index].Description//displaying the description from the users' selected row
@@ -43,23 +43,30 @@ class DetailsViewController: UIViewController {
         }
     }
     
-//    override func viewWillDisappear(_ animated: Bool) {
-//        let items = Item(name: nameField.text!, SKU: SKUField.text!, Description: descField.text!, dateAdded: dateField.date)
-//        itemList.editItem(row: index, item: items)
-//        itemList.encodeData()
-//    }
-
     
     @IBAction func save(_ sender: Any) { //saving the data
-        
-        
-        if !nameField.text!.isEmpty && !SKUField.text!.isEmpty && !descField.text!.isEmpty{
-            //getting text from text field
-            let items = Item(name: nameField.text!, SKU: SKUField.text!, Description: descField.text!, dateAdded: dateField.date)
-            itemList.addItem(item: items)
+        if index == nil{
+            if !nameField.text!.isEmpty && !SKUField.text!.isEmpty && !descField.text!.isEmpty{ //getting text from text field
+                let name = nameField.text!
+                let sku = SKUField.text!
+                let desc = descField.text!
+                let date = dateField.date
+                let item = Item(name: name, SKU: sku, Description: desc, dateAdded: date)
+                itemList.addItem(item: item)
+                navigationController?.popViewController(animated: true)
+            }
+        } else {
+            if !nameField.text!.isEmpty && !SKUField.text!.isEmpty && !descField.text!.isEmpty{
+                let name = nameField.text!
+                let sku = SKUField.text!
+                let desc = descField.text!
+                let date = dateField.date
+                let item = Item(name: name, SKU: sku, Description: desc, dateAdded: date)
+                itemList.editItem(row: index , item: item)
+                navigationController?.popViewController(animated: true)
+            }
         }
     }
-    
     /*
      // MARK: - Navigation
      

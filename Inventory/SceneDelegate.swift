@@ -8,20 +8,24 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-//    let itemList = ItemList()
+    var itemList = ItemList()
 //    var item = [Item]()
    
     var window: UIWindow?
-
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        let navCont = window?.rootViewController as! UINavigationController
+        let itemTableCont = navCont.topViewController as! ItemTableViewController
+            itemTableCont.itemList = itemList
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
+        itemList.save()
         // print(#function)
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
@@ -35,6 +39,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
+        itemList.save()
        
 //        let jsonEncoder = JSONEncoder()
 //        if let savedData = try? jsonEncoder.encode(item) {
